@@ -1,0 +1,21 @@
+{
+  "name": "AlimentAPP",
+  "short_name": "AlimentAPP",
+  "description": "Herramientas para el manejo del craving y el camino del cambio",
+  "start_url": "/AlimentApp/",
+  "display": "standalone",
+  "background_color": "#f4f6f8",
+  "theme_color": "#6fa8dc",
+  "icons": [
+    {
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzs3qvQ1DgcM5LbIte9JRTB7wrfgLzhkeFrQ&s",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzs3qvQ1DgcM5LbIte9JRTB7wrfgLzhkeFrQ&s",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
