@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlimentAPP</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="main-header">
+    <div class="header-top">
+        <img
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzs3qvQ1DgcM5LbIte9JRTB7wrfgLzhkeFrQ&s"
+        alt="Logo de la empresa"
+        class="logo"
+        />
+        <h1>AlimentAPP</h1>
+    </div>
+    <h2 class="subtitle-header">Tus herramientas para el camino del cambio</h2>
+    </header>
+
+
+  <main id="content">
+    <button onclick="showSection('psico')">Psicoeducación</button>
+    <button onclick="showSection('cravingMenu')">Prevención de recaídas</button>
+    <button onclick="openLink('https://forms.gle/TU_FORMULARIO')">Autoregistros</button>
+    <button onclick="openLink('https://forms.gle/TU_FORMULARIO')">Cuestionarios</button>
+    <button onclick="openLink('https://portal.clinicaenlanube.com/clinicas/741/cita_peticiones/new?especialidad=16&agenda=12430')">Píde cita</button>
+    <button onclick="showSection('sugerencias')">Sugerencias</button>
+  </main>
+
+  <section id="psico" class="hidden">
+  <h2>Psicoeducación</h2>
+  <p class="subtitle">Conceptos clave del proceso terapéutico que trabajaremos en profundidad durante las sesiones psicoeducativas</p>
+
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="🔍 Buscar concepto (ej. craving)"
+    oninput="buscarConceptos()"
+  />
+
+  <div id="listaConceptos"></div>
+
+  <button onclick="goHome()">Volver</button>
+</section>
+
+  <section id="cravingMenu" class="hidden">
+    <h2>Prevención de recaídas</h2>
+    <p class="subtitle">Antes de tirarte a la piscina... Elige un recurso</p>
+
+    <button onclick="showSection('paracaidas')">Mi paracaídas</button>
+    <button onclick="showSection('deseo')">Trabajar a través del deseo</button>
+    <button disabled class="btn-disabled">Por añadir (proximamente...)</button>
+
+    <button onclick="goHome()">Volver</button>
+  </section>
+
+<section id="paracaidas" class="hidden">
+  <h2>Mi paracaídas</h2>
+  <p class="subtitle">
+    Plan personal para momentos de craving o riesgo de recaída. Se guarda solo en tu dispositivo.
+  </p>
+
+  <div id="paracaidasContent" class="accordion"></div>
+
+  <div class="row">
+    <button onclick="resetParacaidas()" class="btn-danger">Reset (este dispositivo)</button>
+  </div>
+
+  <button onclick="showSection('cravingMenu')">Volver</button>
+</section>
+
+<section id="deseo" class="hidden">
+  <h2>Trabajar a través del deseo</h2>
+
+  <div class="concept-card">
+    <div class="concept-definition" style="display:block;">
+      <p>Haz una pausa, <strong>respira</strong>, nota las sensaciones donde está tu <strong>deseo adictivo en el cuerpo</strong>.</p>
+
+      <p><strong>Nómbralo</strong> como un deseo adictivo de comer.</p>
+
+      <p>Afirma tu <strong>elección</strong> (comerlo o no), incluyendo los posibles <strong>resultados</strong>.</p>
+
+      <p><strong>Acepta</strong> lo que elijas, <strong>solo por esta vez</strong>.</p>
+
+      <p>
+        Si lo comes, <strong><u>hazlo de forma consciente</u></strong>.  
+        Si no lo comes, respira notando cómo el deseo adictivo se disipa cuando te fijas en él.
+      </p>
+
+      <p><strong>La repetición es la clave.</strong></p>
+
+      <p>
+        Con hacer repeticiones de <strong>10 y 20 segundos</strong> ya se crean nuevas vías neuronales.
+      </p>
+    </div>
+  </div>
+
+  <button onclick="showSection('cravingMenu')">Volver</button>
+</section>
+
+
+
+
+  <section id="sugerencias" class="hidden">
+    <h2>Sugerencias</h2>
+    <textarea placeholder="Déjanos tus sugerencias..."></textarea>
+    <button>Enviar</button>
+    <button onclick="goHome()">Volver</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

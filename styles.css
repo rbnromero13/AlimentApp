@@ -1,0 +1,171 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 10px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.main-header {
+  margin-bottom: 20px;
+}
+
+.header-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subtitle-header {
+  margin-top: 6px;
+  font-size: 16px;
+  font-weight: normal;
+  color: #555;
+}
+
+.logo {
+  width: 70px;
+  height: auto;
+}
+
+
+button {
+  width: 100%;
+  padding: 15px;
+  margin: 8px 0;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  background-color: #6fa8dc;
+  color: white;
+}
+
+button:hover {
+  background-color: #558cc4;
+}
+
+.hidden {
+  display: none;
+}
+
+section {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+textarea {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+#searchInput {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.concept-card {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.concept-title {
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.concept-definition {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.4;
+  display: none;
+}
+
+.btn-disabled {
+  opacity: 0.6;
+}
+
+.accordion .concept-card {
+  margin-bottom: 12px;
+}
+
+.small-note {
+  font-size: 13px;
+  color: #666;
+  margin: 6px 0 10px;
+}
+
+.field {
+  margin: 10px 0;
+}
+
+.field label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.field input, .field textarea {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+.field textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.row {
+  margin: 12px 0;
+}
+
+.btn-secondary {
+  background-color: #7f8c8d;
+}
+
+.btn-secondary:hover {
+  background-color: #6c7a7b;
+}
+
+.btn-danger {
+  background-color: #c0392b;
+}
+
+.btn-danger:hover {
+  background-color: #a93226;
+}
+
+.badge-saved {
+  display: inline-block;
+  font-size: 12px;
+  color: #2d7a2d;
+  margin-left: 8px;
+}
+
+u {
+  text-underline-offset: 3px;
+}
