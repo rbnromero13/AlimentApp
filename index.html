@@ -12,10 +12,15 @@
     <header class="main-header">
     <div class="header-top">
         <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzs3qvQ1DgcM5LbIte9JRTB7wrfgLzhkeFrQ&s"
-        alt="Logo de la empresa"
-        class="logo"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzs3qvQ1DgcM5LbIte9JRTB7wrfgLzhkeFrQ&s"
+          alt="Logo de la empresa (volver al inicio)"
+          class="logo logo-clickable"
+          role="button"
+          tabindex="0"
+          onclick="goHome()"
+          onkeydown="if(event.key==='Enter' || event.key===' ') goHome()"
         />
+
         <h1>AlimentAPP</h1>
     </div>
     <h2 class="subtitle-header">Tus herramientas para el camino del cambio</h2>
@@ -24,9 +29,10 @@
 
   <main id="content">
     <button onclick="showSection('psico')">Psicoeducación</button>
+    <button onclick="showSection('cravingMenu')">Ejercicios</button>
     <button onclick="showSection('cravingMenu')">Prevención de recaídas</button>
     <button onclick="openLink('https://forms.gle/TU_FORMULARIO')">Autoregistros</button>
-    <button onclick="openLink('https://forms.gle/TU_FORMULARIO')">Cuestionarios</button>
+    <button onclick="showSection('cuestionariosMenu')">Cuestionarios</button>
     <button onclick="openLink('https://portal.clinicaenlanube.com/clinicas/741/cita_peticiones/new?especialidad=16&agenda=12430')">Píde cita</button>
     <button onclick="showSection('sugerencias')">Sugerencias</button>
   </main>
@@ -102,7 +108,19 @@
   <button onclick="showSection('cravingMenu')">Volver</button>
 </section>
 
+  <section id="cuestionariosMenu" class="hidden">
+    <h2>Cuestionarios</h2>
+    <p class="subtitle">Selecciona la escala que quieras completar</p>
 
+    <button onclick="openLink('https://forms.gle/dnvYi155eSeQiQZF6')">YFAS</button>
+    <button onclick="openLink('https://forms.gle/ENLACE_BED')">BED</button>
+    <button onclick="openLink('https://forms.gle/ENLACE_IMAGEN')">IMAGEN</button>
+    <button onclick="openLink('https://forms.gle/C6rgM1A53M9GvKvA7')">PHQ9 + GAD7</button>
+    <button onclick="openLink('https://forms.gle/ENLACE_WHOQOL_BREF')">WHOQOL-BREF</button>
+    <button onclick="openLink('https://forms.gle/sypRuM6LnPXPHdhG6')">URICA</button>
+
+    <button onclick="goHome()">Volver</button>
+  </section>
 
 
   <section id="sugerencias" class="hidden">
