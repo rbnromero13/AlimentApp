@@ -1,4 +1,7 @@
 function showSection(id) {
+  // Si salimos de mindfulness, paramos todos los audios
+  if (id !== "mindfulness") stopMindfulness();
+
   document.getElementById("content").style.display = "none";
   document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
@@ -11,10 +14,14 @@ function showSection(id) {
   if (id === "paracaidas") {
     renderParacaidas();
   }
+
+  if (id === "mindfulness") {
+    renderMindfulness();
+  }
 }
 
-
 function goHome() {
+  stopMindfulness(); // ✅ por si estaba sonando algo
   document.getElementById("content").style.display = "block";
   document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
 }
@@ -525,3 +532,180 @@ function escapeHtml(str) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
+
+// ===== Ejercicios: Mindfulness =====
+
+// IMPORTANTE: Pon los IDs reales de Drive en fileId.
+// El ID se extrae de enlaces así:
+// https://drive.google.com/file/d/FILE_ID/view
+const mindfulnessAudios = [
+  {
+    key: "a01",
+    title: "Caminar con atención plena",
+    filename: "Audio 01 – Caminar con atención plena.mp3",
+    desc: "Práctica en movimiento para llevar la atención a pasos, postura y entorno. Útil cuando estás inquietx o con urgencia moderada."
+  },
+  {
+    key: "a02",
+    title: "Disolución del yo",
+    filename: "Audio 02 – Disolución del yo.mp3",
+    desc: "Ejercicio para observar pensamientos/identidad como eventos mentales, reduciendo la fusión cognitiva. Útil cuando aparecen autocríticas."
+  },
+  {
+    key: "a03",
+    title: "El anciano",
+    filename: "Audio 03 – El anciano.mp3",
+    desc: "Metáfora guiada para tomar perspectiva a largo plazo y conectar con valores. Útil para reforzar motivación en momentos de duda."
+  },
+  {
+    key: "a04",
+    title: "El funeral",
+    filename: "Audio 04 – El funeral.mp3",
+    desc: "Visualización para clarificar lo importante y orientar decisiones hacia valores. Útil cuando sientes apatía o desconexión."
+  },
+  {
+    key: "a05",
+    title: "Metáforas Visuales",
+    filename: "Audio 05 – Metáforas Visuales.mp3",
+    desc: "Entrena observar imágenes/pensamientos sin engancharte, como si fueran escenas pasajeras. Útil en rumiación o anticipación."
+  },
+  {
+    key: "a06",
+    title: "Práctica de Body scan",
+    filename: "Audio 06 – Práctica de Body scan.mp3",
+    desc: "Recorrido corporal para detectar tensión y regular el sistema nervioso. Útil tras estrés o antes de dormir."
+  },
+  {
+    key: "a07",
+    title: "Práctica de los 3 minutos",
+    filename: "Audio 07 – Práctica de los 3 minutos.mp3",
+    desc: "Micropráctica breve para parar, notar y elegir. Ideal como “interruptor” en craving alto."
+  },
+  {
+    key: "a08",
+    title: "Respiración 2",
+    filename: "Audio 08 – Respiración 2.mp3",
+    desc: "Enfoque en respiración para estabilizar atención y bajar activación. Útil si hay ansiedad o urgencia fisiológica."
+  },
+  {
+    key: "a09",
+    title: "MindfulEating - La uva",
+    filename: "Audio 09 – Uva.mp3",
+    desc: "Ejercicio de alimentación consciente para entrenar presencia al comer. Útil para reeducar ritmo y señales internas."
+  }
+];
+
+function localAudioUrl(filename) {
+  // encodeURI mantiene / y codifica espacios/acentos/comillas tipográficas, etc.
+  return encodeURI(`assets/Audios_Mindfulness/${filename}`);
+}
+
+
+// URL directa típica para embeber en <audio>
+function driveAudioUrl(fileId) {
+  return `https://drive.google.com/uc?export=download&confirm=no_antivirus&id=${encodeURIComponent(fileId)}`;
+}
+
+
+// Fallback que a veces funciona cuando uc da problemas (cambios recientes en Drive)
+function driveFallbackUrl(fileId) {
+  return `https://drive.usercontent.google.com/download?export=download&id=${encodeURIComponent(fileId)}&confirm=t`;
+}
+
+function renderMindfulness() {
+  const container = document.getElementById("mindfulnessList");
+  if (!container) return;
+
+  container.innerHTML = mindfulnessAudios.map(a => `
+    <div class="concept-card audio-card">
+      <!-- Cabecera (plegada) -->
+      <div class="concept-title" onclick="toggleMindfulnessCard('${a.key}')">
+        ${escapeHtml(a.title)}
+      </div>
+
+      <!-- Contenido desplegable -->
+      <div class="concept-definition audio-panel" id="panel_${a.key}" style="display:none;">
+        <div class="audio-desc">${escapeHtml(a.desc)}</div>
+
+        <audio
+          id="player_${a.key}"
+          controls
+          preload="none"
+          style="width:100%; margin-top:10px;"
+          src="${localAudioUrl(a.filename)}"
+        ></audio>
+      </div>
+    </div>
+  `).join("");
+}
+
+function toggleMindfulnessCard(key) {
+  const panel = document.getElementById(`panel_${key}`);
+  const player = document.getElementById(`player_${key}`);
+  if (!panel) return;
+
+  const isOpen = panel.style.display === "block";
+
+  // Cierra todos y para todos
+  closeAllMindfulnessCards();
+
+  // Si estaba cerrado, lo abrimos
+  if (!isOpen) {
+    panel.style.display = "block";
+
+    // (opcional) empezar a reproducir al abrir
+    // player?.play().catch(() => {});
+  }
+}
+
+function closeAllMindfulnessCards() {
+  mindfulnessAudios.forEach(a => {
+    const p = document.getElementById(`panel_${a.key}`);
+    const player = document.getElementById(`player_${a.key}`);
+
+    if (p) p.style.display = "none";
+    if (player) {
+      player.pause();
+      player.currentTime = 0;
+    }
+  });
+}
+
+
+
+function playMindfulness(key) {
+  const audio = mindfulnessAudios.find(a => a.key === key);
+  if (!audio) return;
+
+  const player = document.getElementById("mindfulnessPlayer");
+  const nowPlaying = document.getElementById("nowPlaying");
+  const hint = document.getElementById("audioHint");
+  const driveLink = document.getElementById("driveFallbackLink"); // si existe en tu HTML
+
+  if (!player || !nowPlaying) return;
+
+  if (hint) hint.style.display = "none";
+  if (driveLink) driveLink.style.display = "none"; // ya no lo necesitamos
+
+  nowPlaying.textContent = `Reproduciendo: ${audio.title}`;
+
+  // Ruta local
+  player.src = localAudioUrl(audio.filename);
+
+  player.play().catch(() => {
+    // Si falla (archivo no encontrado / servidor no sirve assets)
+    if (hint) {
+      hint.style.display = "block";
+      hint.textContent = "No se ha podido cargar el audio. Revisa que el archivo exista y que se esté sirviendo la carpeta assets.";
+    }
+  });
+}
+
+function stopMindfulness() {
+  closeAllMindfulnessCards();
+}
+
+// Hook: al entrar en la sección mindfulness, pintamos la lista
+// Añade esto dentro de tu showSection(id) existente:
+//   if (id === "mindfulness") renderMindfulness();

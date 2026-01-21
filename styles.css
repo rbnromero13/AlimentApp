@@ -169,3 +169,42 @@ textarea {
 u {
   text-underline-offset: 3px;
 }
+
+.audio-item {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.audio-meta {
+  flex: 1;
+}
+
+.audio-title {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.audio-desc {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.audio-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 120px;
+}
+
+.now-playing {
+  font-size: 0.95rem;
+  margin-bottom: 8px;
+}
+
+.hint {
+  font-size: 0.9rem;
+  opacity: 0.85;
+}
+

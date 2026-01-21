@@ -29,7 +29,7 @@
 
   <main id="content">
     <button onclick="showSection('psico')">Psicoeducación</button>
-    <button disabled class="btn-disabled">Ejercicios</button>
+    <button onclick="showSection('ejerciciosMenu')">Ejercicios</button>
     <button onclick="showSection('cravingMenu')">Prevención de recaídas</button>
     <button disabled class="btn-disabled">Autoregistros</button>
     <button onclick="showSection('cuestionariosMenu')">Cuestionarios</button>
@@ -52,6 +52,25 @@
 
   <button onclick="goHome()">Volver</button>
 </section>
+
+
+  <section id="ejerciciosMenu" class="hidden">
+    <h2>Ejercicios</h2>
+    <p class="subtitle">Herramientas breves para regular el craving y entrenar atención.</p>
+
+    <button class="btn" onclick="showSection('mindfulness')">Ejercicios de Mindfulness</button>
+    <button class="btn btn-disabled" disabled>Ejercicio 2 (pendiente)</button>
+    <button class="btn btn-disabled" disabled>Ejercicio 3 (pendiente)</button>
+
+    <button class="btn btn-secondary" onclick="goHome()">Volver</button>
+  </section>
+
+  <section id="mindfulness" class="hidden">
+    <h2>Mindfulness</h2>
+    <p class="subtitle">Audios guiados para entrenar atención, presencia y manejo del deseo.</p>
+    <div id="mindfulnessList"></div>
+    <button class="btn btn-secondary" onclick="showSection('ejerciciosMenu')">Volver</button>
+  </section>
 
   <section id="cravingMenu" class="hidden">
     <h2>Prevención de recaídas</h2>
